@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang ="en">
+<title>Calculator</title>
+
+<head>
+    <link rel="stylesheet" href="Calculator.css">
+    <script src="Calculator.js"></script>
+    <link rel="icon" href="calculator.png">
+</head>
+<body id ="myId">
+  <div>
+    <table>
+        <caption> <b>Test Calculator</b> </caption>
+
+        <tr> 
+          <td colspan="3" > <input type="text" id="result"> </td>
+          <td> <input type="button" value="C" onclick="clr()"> </td>
+        </tr>
+
+        <tr>
+          <td><input type="button" value="1" onclick="dis('1')" onkeydown="displayFunction(event)"> </td>
+          <td> <input type="button" value="2" onclick="dis('2')" onkeydown="displayFunction(event)"></td>
+          <td> <input type="button" value="3" onclick="dis('3')" onkeydown="displayFunction(event)"></td>
+          <td> <input type="button" value="/" onclick="dis('/')" onkeydown="displayFunction(event)"></td>
+        </tr>
+        
+        <tr>
+          <td> <input type="button" value="4" onclick="dis('4')" onkeydown="displayFunction(event)"></td>
+          <td> <input type="button" value="5" onclick="dis('5')" onkeydown="displayFunction(event)"></td>
+          <td> <input type="button" value="6" onclick="dis('6')" onkeydown="displayFunction(event)"></td>
+          <td> <input type="button" value="*" onclick="dis('*')" onkeydown="displayFunction(event)"></td>
+        </tr>
+
+        <tr>
+          <td><input type="button" value="7" onclick="dis('7')" onkeydown="displayFunction(event)"></td>
+          <td><input type="button" value="8" onclick="dis('8')" onkeydown="displayFunction(event)"></td>
+          <td><input type="button" value="9" onclick="dis('9')" onkeydown="displayFunction(event)"></td>
+          <td><input type="button" value="-" onclick="dis('-')" onkeydown="displayFunction(event)"></td>
+        </tr>
+
+        <tr>
+          <td><input type="button" value="0" onclick = "dis('0')" onkeydown="displayFunction(event)"></td>
+          <td><input type="button" value="." onclick="dis('.')" onkeydown="displayFunction(event)"></td>
+          <td><input type="button" value="=" onclick="dis('=')" onkeydown="displayFunction(event)"></td>
+          <td><input type="button" value="+" onclick="dis('+')" onkeydown="displayFunction(event)"></td>
+        </tr>
+      </table>
+
+      <input type = "button" id ="colorChange" value="Click to Change Color" onclick = "changeBgColor()" ></input>
+  </div>
+  
+
+
+</body>
+
+</html>
