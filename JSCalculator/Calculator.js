@@ -19,10 +19,26 @@ function clr(){
     document.getElementById("result").value = " "
 }
 
-let colorsList = ["blue", "red", "yellow", "white"]
+function cal(){
+    let x = document.getElementById("result").value 
+    document.getElementById("result").value = eval(x)
+}
+
+let colorsList = ["blue", "red", "yellow", "white", "whitesmoke"]
 let colorIndex = 0
 
 function changeBgColor(){
     document.getElementById("myId").style.background = colorsList[colorIndex]
     colorIndex = (colorIndex + 1) % colorsList.length
     }
+
+    
+  
+    
+    // function changeBgColor(){
+    //     let colorsList = ["blue", "red", "yellow"]
+    //     for (let i =0; i <colorsList.length; i++){
+    //         document.getElementById("myId").style.background = colorsList[i];
+    //     }
+    //  }
+    
