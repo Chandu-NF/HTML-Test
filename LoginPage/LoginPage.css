@@ -1,0 +1,33 @@
+
+body{
+    max-width:fit-content;
+    margin-left: 30%;
+    margin-top: 10%;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+form{
+    max-width:fit-content;
+    margin-left: 2%;
+    margin-top: 10%;
+}
+
+
+input[type=text], input[type=password], button {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 12px;
+}
+
+button{
+    background-color:rgb(11, 185, 11);
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+}
+h2{
+    text-align: center;
+}
