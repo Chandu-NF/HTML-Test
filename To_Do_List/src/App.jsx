@@ -1,7 +1,8 @@
 
+import { Box, Card, CardContent, List, ListItem, Typography } from '@mui/joy';
 import React, { useState } from 'react';
-import Task from '../src/Task';
 import './App.css';
+import Task from './components/Task';
 
 function App() {
 
@@ -10,9 +11,14 @@ function App() {
 
   const addTask = (e)=>{
     e.preventDefault();
-    setTaskList([...taskList, {task: taskName}])
+    setTaskList([...taskList, {id: taskName}])
     setTaskName("")
   }
+
+  const deleteTask = (id) => {
+    setTaskList(taskList.filter(task => task.id !== id));
+    }
+
 
     return (
       <div className='App'>
@@ -27,22 +33,40 @@ function App() {
         onChange={(e) =>
           setTaskName(e.target.value)
         }/>
+        
         <button className="add" type='submit'>Add Task</button>
   </form>
-       
-    
-   
 
-        <label className = "lab"> Your Tasks :</label>
-        <ul className="taskList">
-          {taskList.map((task) =>{
-          return  <Task key={task.task} taskName = {task.task}/>
-          }
-        )
-        }
-        </ul>
+  <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: '13rem',
+        width: '100%',
+      }}
+    >
+      <Card variant="outlined" sx={{ minWidth: 280, backgroundColor:'wheat', borderRadius: 12, border:'2px solid black'} } >
+        <CardContent>
+          <Typography level="title-md" textColor="common.black">
+            Your Tasks:
+          </Typography>
+          <Typography textColor="common.black">
 
-      </div> 
+          <List sx={{ padding: '8px 0' }}>
+              {taskList.length > 0 ? (
+                taskList.map((task) => (
+                  <Task key={task.id} taskName={task.id} Delete={()=>deleteTask(task.id)} />
+                ))
+              ) : (
+                <ListItem>No tasks added yet</ListItem>
+              )}
+            </List>
+          </Typography>
+        </CardContent>
+      </Card>
+    </Box>
+</div> 
     )
   }
  
