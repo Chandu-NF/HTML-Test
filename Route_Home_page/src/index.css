@@ -1,0 +1,90 @@
+
+.topNav {
+  background-color: teal;
+  padding: 1rem;
+  border-bottom: 2px solid #ccc;
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.topNav a {
+  text-decoration: none;
+  color: white;
+}
+
+.topNav a:hover {
+  background-color: none;
+  color:coral;
+}
+
+.topNav a.active {
+  background-color: white;
+  color: white;
+}
+
+
+.Task{
+  position: relative;
+  width: 300px;
+  height: 40px;
+  border: 2px solid black;
+  border-radius: 10px;
+  left: 580px;
+  top: 160px;
+  font-size: 10x;
+  background-color: white;
+}
+
+
+.add{
+  position: relative;
+  width: 80px;
+  height: 30px;
+  border-radius: 10px;
+  background-color: rgb(28, 127, 185);
+  color: white;
+  left: 380px;
+  top: 240px
+}
+
+.title{
+  position: absolute;
+  left: 690px;
+  top: 120px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+.taskList{
+  position: absolute;
+  left: 500px;
+  top: 300px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+.deleteButton{
+  position:absolute;
+  border-radius: 5px;
+  left: 200px;
+  background-color:crimson;
+  color: white;
+}
+
+
+.delButton{
+  position:absolute;
+  border-radius: 5px;
+  left: 600px;
+  background-color:crimson;
+  color: white;
+  cursor: pointer;
+}
+
+
+.Home{
+  text-align: center;
+  margin: auto;
+  padding: 220px;
+
+}
