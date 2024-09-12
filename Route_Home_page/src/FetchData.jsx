@@ -10,9 +10,18 @@ function FetchData() {
     const [data, setData] = useState([]); 
 
     const deleteList = (id) => {
-        const updatedData = data.filter(item => item.id !== id);
-        setData(updatedData);
-        }
+        fetch('https://jsonplaceholder.typicode.com/posts/${id}', {
+         method: 'DELETE'
+    })
+    .then(response=>{
+        if(response.ok){
+            const updatedData = data.filter(item => item.id !== id);
+            setData(updatedData);
+        } else {
+            console.error('Failed to delete the item');
+    }
+ })
+}
 
     useEffect(() => {
         fetch('https://jsonplaceholder.typicode.com/posts')
@@ -56,5 +65,6 @@ function FetchData() {
 </Box>
     );
 }
+
 
 export default FetchData
