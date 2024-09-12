@@ -1,4 +1,5 @@
 import { Box, Card, CardContent, List, Typography } from '@mui/joy';
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import './index.css';
 
@@ -9,27 +10,48 @@ function FetchData() {
 
     const [data, setData] = useState([]); 
 
+//     const deleteList = (id) => {
+//         fetch('https://jsonplaceholder.typicode.com/posts/${id}', {
+//          method: 'DELETE'
+//     })
+//     .then(response=>{
+//         if(response.ok){
+//             const updatedData = data.filter(item => item.id !== id);
+//             setData(updatedData);
+//         } else {
+//             console.error('Failed to delete the item');
+//     }
+//  })
+// }
+
+
+    // useEffect(() => {
+    //     fetch('https://jsonplaceholder.typicode.com/posts')
+    //         .then(response =>  response.json())
+    //         .then(jsonData => {
+    //             setData(jsonData); 
+    //         })
+    // }, []);
+
     const deleteList = (id) => {
-        fetch('https://jsonplaceholder.typicode.com/posts/${id}', {
-         method: 'DELETE'
-    })
+        axios.delete('https://jsonplaceholder.typicode.com/posts/${id}')
     .then(response=>{
-        if(response.ok){
+        if(response.status == 200){
             const updatedData = data.filter(item => item.id !== id);
             setData(updatedData);
         } else {
             console.error('Failed to delete the item');
     }
- })
-}
+    })
+    }
 
-    useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/posts')
-            .then(response =>  response.json())
-            .then(jsonData => {
-                setData(jsonData); 
+        useEffect(() => {
+        axios.get('https://jsonplaceholder.typicode.com/posts')
+            .then(response => {
+                setData(response.data); 
             })
     }, []);
+
 
     return (
     <Box
