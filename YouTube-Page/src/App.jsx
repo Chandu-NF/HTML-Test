@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import './App.css';
 import ExplorePage from './Explore';
-import HomePage from './Home';
+import HomePage from './Home.jsx';
 import Layout from './Layout';
 import SearchPage from './Search';
 

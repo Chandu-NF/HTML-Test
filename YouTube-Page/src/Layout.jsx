@@ -13,13 +13,24 @@ function Layout(){
         marginTop: '1rem',
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'center',
-        backgroundColor: 'seagreen',
+        backgroundColor: 'indianred',
         border: '2px solid black',
         width: '100%',
         padding: '5px',
         gap: 10,
         fontSize: '20px'}}>
+        <Box sx={{
+            display:'flex',
+            alignItems: 'center'}}> 
+        <img 
+        src='./youtube.png'
+        style = {{width:'30px', height:'33px', marginRight:'8px'}}
+        > 
+        </img>
+        <Typography level="body1" textColor="white" sx={{ cursor: 'pointer'}}>
+        YouTube
+        </Typography>
+        </Box>
         <Typography component={Link} to="/home" level="body1" textColor="white" sx={{ cursor: 'pointer' }}>
         Home
         </Typography>

@@ -1,18 +1,23 @@
 import { Box, Card, CardContent, Typography } from '@mui/joy';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { cardStyle, channelTitleStyle, publishedAtStyle, titleStyle } from './home.js';
 
 function ExplorePage() {
     const [videos, setVideos] = useState([]);
 
+    const apiURL = import.meta.env.VITE_API_URL_EXPLORE;
+    const apiKey = import.meta.env.VITE_API_KEY;
+
+
     useEffect(() => {
-        axios.get('https://www.googleapis.com/youtube/v3/search', {
+        axios.get(apiURL, {
             params: {
                 part: 'snippet',
                 q: 'React',
                 type: 'video',
-                key: 'AIzaSyCveq-kf0ww58bgAgJJ6Uqi19MPf311324',
-                maxResults: 12
+                key: apiKey,
+                maxResults: 24
             }
         }).then(response => {
             setVideos(response.data.items);
@@ -31,39 +36,19 @@ function ExplorePage() {
           }}>
             {videos.map((video) => (
                 <Card key={video.id.videoId}
-                 sx={{
-                    margin: 2, 
-                    display: 'inline-grid',
-                    width: '280px', 
-                    justifyContent: 'center',
-                    border: '1px solid black',
-                    borderRadius: '10px',
-                    backgroundColor: 'white'}}>
+                 sx={cardStyle}>
                     <img  className ='pic' src={video.snippet.thumbnails.medium.url} alt={video.snippet.title} />
                     <CardContent className = 'cardCont'>
                         <Typography 
-                         sx={{ 
-                            color: 'black', 
-                            textAlign: 'justify', 
-                            fontSize:'14px',
-                            fontWeight: 'bold' }}
-                            variant="h5">{video.snippet.title}</Typography>
+                         sx={ titleStyle }
+                            variant="h5">{video.snippet.title.length>50
+                                ? video.snippet.title.slice(0,50) + "....."
+                                :video.snippet.title}</Typography>
                         <Typography
-                        sx={{ 
-                            color: 'black', 
-                            textAlign: 'left',
-                            fontSize: '12px',
-                            fontWeight: 'lighter' 
-                             }}>
+                        sx={ channelTitleStyle  }>
                                 {video.snippet.channelTitle}</Typography>
-                        <Typography
-                        sx={{ 
-                            color: 'black', 
-                            textAlign: 'left', 
-                            justifyContent:'space-between', 
-                            fontSize: '12px',
-                            fontWeight: 'lighter' }}>
-                               {video.statistics.viewCount} views . {new Date(video.snippet.publishedAt).toLocaleDateString()}</Typography>
+                        <Typography sx={ publishedAtStyle }>
+                                {new Date(video.snippet.publishedAt).toLocaleDateString()}</Typography>
                     </CardContent>
                 </Card>
             ))}
