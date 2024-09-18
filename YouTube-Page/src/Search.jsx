@@ -1,11 +1,14 @@
-import { Box, Button, Card, CardContent, Input, Typography } from '@mui/joy';
+import { Box, Button, Input, Modal } from '@mui/joy';
 import axios from 'axios';
 import React, { useState } from 'react';
-import { cardStyle, channelTitleStyle, publishedAtStyle, titleStyle } from './home';
+import CardCompExp from './CardCompExp';
+import { inputBox, inputButton, playVideoBox, searchBox, searchVideoBox } from './home';
+
 
 function SearchPage() {
     const [query, setQuery] = useState('');
     const [videos, setVideos] = useState([]);
+    const [selectedVideoId, setSelectedVideoId] = useState(null);
 
     const apiURL = import.meta.env.VITE_API_URL_EXPLORE;
     const apiKey = import.meta.env.VITE_API_KEY;
@@ -25,68 +28,52 @@ function SearchPage() {
         })
     };
 
+    const handleVideoClick = (id) => {
+        setSelectedVideoId(id)
+    };
+
+    const handleCloseModal = () => {
+        setSelectedVideoId(null)
+    };
+
     return (
         <Box>
         <Box
-        sx={{
-            position: 'absolute',
-            display: 'flex',
-            top: '5rem',
-            left: '40%',
-          }}
-          >
+        sx={searchBox}>
             <Input
                 label="Search Videos"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder='Search....'
-                sx={{
-                    border: '2px solid black',
-                    backgroundColor: 'whitesmoke',
-                    width: '280px',
-                    height: '20px',
-                 }}
+                sx={inputBox}
             />
-            <Button sx ={{
-                border: '1px solid black', 
-                height: '4px',
-                left: '3%',
-                backgroundColor: 'lightseagreen',
-                color: 'white'
-            }} onClick={handleSearch} variant="contained">Search</Button>
-            </Box>,
+            <Button sx ={inputButton} onClick={handleSearch} variant="contained">Search</Button>
+        </Box>,
 
-            <Box
-            sx ={{position: 'relative',
-                display: 'flex',
-                flexWrap: 'wrap', 
-                justifyContent: 'center',
-                paddingLeft: '120px',
-                marginTop: '7rem'}}>
+        <Box
+            sx ={searchVideoBox}>
              
             
             {videos.map((video) => (
-                <Card key={video.id.videoId} 
-                sx={{cardStyle}}
-                >
-                    <img className ='pic' src={video.snippet.thumbnails.medium.url} alt={video.snippet.title} />
-                    <CardContent className = 'cardCont'>
-                        <Typography 
-                        sx={titleStyle }
-                        variant="h5">{video.snippet.title.length>50
-                            ? video.snippet.title.slice(0,50) + "....."
-                            :video.snippet.title}
-                            </Typography>
-                        <Typography
-                        sx={channelTitleStyle }>
-                                {video.snippet.channelTitle}</Typography>
-                        <Typography
-                        sx={publishedAtStyle }>
-                                {new Date(video.snippet.publishedAt).toLocaleDateString()}</Typography>
-                    </CardContent>
-                </Card>
+               <CardCompExp 
+               key={video.id.videoId} 
+               vid={video} 
+               onClick={handleVideoClick} 
+               />
             ))}
         </Box>
+        <Modal open={!!selectedVideoId} onClose={handleCloseModal}>
+            <Box sx={playVideoBox}>
+                {selectedVideoId && (
+                        <iframe
+                            width="560"
+                            height="315"
+                            src={`https://www.youtube.com/embed/${selectedVideoId}`}
+                            allowFullScreen
+                        ></iframe>
+                    ) }
+            </Box>
+        </Modal>
     </Box>
     );
 }

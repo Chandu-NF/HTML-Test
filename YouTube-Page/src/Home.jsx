@@ -1,7 +1,8 @@
-import { Box, Card, CardContent, Modal, Typography } from '@mui/joy';
+import { Box, Modal } from '@mui/joy';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { cardStyle, channelTitleStyle, publishedAtStyle, titleStyle } from './home';
+import CardComp from './CardComp';
+import { playVideoBox, videoBox } from './home';
 
 function HomePage() {
     const [videos, setVideos] = useState([]);
@@ -23,9 +24,10 @@ function HomePage() {
             setVideos(response.data.items);
         })
         },[]);
+        
     
-    const handleVideoClick = (videoId) => {
-        setSelectedVideoId(videoId)
+    const handleVideoClick = (id) => {
+        setSelectedVideoId(id)
     };
 
     const handleCloseModal = () => {
@@ -35,46 +37,32 @@ function HomePage() {
 
     return (
         <Box
-        sx={{
-            position: 'relative',
-            display: 'flex',
-            flexWrap: 'wrap', 
-            justifyContent: 'center',
-            paddingLeft: '120px',
-            marginTop: '5rem',
-          }}>
+        sx={videoBox}>
             {videos.map((video) => (
-                <Card key={video.id} sx={cardStyle}  onClick={() => handleVideoClick(video.id.videoId)}>
-                    <img className ='pic' src={video.snippet.thumbnails.medium.url} alt={video.snippet.title} />
-                    <CardContent className = 'cardCont'>
-                        <Typography sx={ titleStyle} variant="h5">{video.snippet.title.length>50
-                            ? video.snippet.title.slice(0,50) + "....."
-                            :video.snippet.title}</Typography>
-                        <Typography sx={channelTitleStyle }>
-                                {video.snippet.channelTitle}</Typography>
-                        <Typography sx={ publishedAtStyle }>
-                                {video.statistics.viewCount} views . {new Date(video.snippet.publishedAt).toLocaleDateString()}</Typography>
-                    </CardContent>
-                </Card>
+            <CardComp 
+                key={video.id} 
+                vid={video} 
+                onClick={handleVideoClick} 
+            />
             )
-        )}
-        </Box>,
+        )} 
 
-        <Modal
-            open={!!selectedVideoId}
-            onClose = {handleCloseModal}
-        >
-        <Box>
-            {
-                selectedVideoId && <iframe
-                src={`https://www.youtube.com/embed/${selectedVideoId}`}>
-
-                </iframe>
-            }
-
-        </Box>
+        <Modal open={!!selectedVideoId} onClose={handleCloseModal}>
+            <Box sx={playVideoBox}>
+                {selectedVideoId && (
+                        <iframe
+                            width="560"
+                            height="315"
+                            src={`https://www.youtube.com/embed/${selectedVideoId}`}
+                            allowFullScreen
+                        ></iframe>
+                    ) }
+            </Box>
         </Modal>
+    </Box>
     );
 }
 
 export default HomePage;
+
+
