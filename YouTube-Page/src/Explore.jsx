@@ -1,19 +1,19 @@
 import { Box, Modal } from '@mui/joy';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import CardCompExp from './CardCompExp.jsx';
+import CardComp from './CardComp.jsx';
 import { playVideoBox, videoBox } from './home.js';
 
 function ExplorePage() {
     const [videos, setVideos] = useState([]);
     const [selectedVideoId, setSelectedVideoId] = useState(null);
 
-    const apiURL = import.meta.env.VITE_API_URL_EXPLORE;
+    const apiURL = import.meta.env.VITE_API_URL_HOME;
     const apiKey = import.meta.env.VITE_API_KEY;
 
 
     useEffect(() => {
-        axios.get(apiURL, {
+        axios.get(`${apiURL}/search`, {
             params: {
                 part: 'snippet',
                 q: 'React',
@@ -38,7 +38,7 @@ function ExplorePage() {
         <Box
         sx={videoBox}>
             {videos.map((video) => (
-                <CardCompExp 
+                <CardComp 
                 key={video.id.videoId} 
                 vid={video} 
                 onClick={handleVideoClick} 
@@ -53,7 +53,7 @@ function ExplorePage() {
                             height="315"
                             src={`https://www.youtube.com/embed/${selectedVideoId}`}
                             allowFullScreen
-                        ></iframe>
+                        />
                     ) }
             </Box>
         </Modal>

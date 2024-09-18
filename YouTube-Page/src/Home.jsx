@@ -12,7 +12,7 @@ function HomePage() {
     const apiKey = import.meta.env.VITE_API_KEY;
 
     useEffect(() => {
-        axios.get(apiUrl, {
+        axios.get(`${apiUrl}/videos`, {
             params: {
                 part: 'snippet,statistics',
                 chart: 'mostPopular',
@@ -55,7 +55,7 @@ function HomePage() {
                             height="315"
                             src={`https://www.youtube.com/embed/${selectedVideoId}`}
                             allowFullScreen
-                        ></iframe>
+                        />
                     ) }
             </Box>
         </Modal>

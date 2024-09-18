@@ -1,7 +1,7 @@
 import { Box, Button, Input, Modal } from '@mui/joy';
 import axios from 'axios';
 import React, { useState } from 'react';
-import CardCompExp from './CardCompExp';
+import CardComp from './CardComp';
 import { inputBox, inputButton, playVideoBox, searchBox, searchVideoBox } from './home';
 
 
@@ -10,12 +10,12 @@ function SearchPage() {
     const [videos, setVideos] = useState([]);
     const [selectedVideoId, setSelectedVideoId] = useState(null);
 
-    const apiURL = import.meta.env.VITE_API_URL_EXPLORE;
+    const apiURL = import.meta.env.VITE_API_URL_HOME;
     const apiKey = import.meta.env.VITE_API_KEY;
 
 
     const handleSearch = () => {
-        axios.get(apiURL, {
+        axios.get(`${apiURL}/search`, {
             params: {
                 part: 'snippet',
                 q: query,
@@ -55,7 +55,7 @@ function SearchPage() {
              
             
             {videos.map((video) => (
-               <CardCompExp 
+               <CardComp
                key={video.id.videoId} 
                vid={video} 
                onClick={handleVideoClick} 
