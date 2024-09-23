@@ -1,6 +1,6 @@
 import { Box, Modal } from '@mui/joy';
 import axios from 'axios';
-import React, { FC, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CardComp from './CardComp';
 import { playVideoBox, videoBox } from './home';
 
@@ -21,7 +21,7 @@ interface Video {
     };
 }
 
-const HomePage: FC = () => {
+function HomePage () {
     const [videos, setVideos] = useState<Video[]>([]);
     const [selectedVideoId, setSelectedVideoId] = useState<string | null>(null);
 

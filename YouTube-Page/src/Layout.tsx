@@ -5,7 +5,7 @@ import DropDownMenu from './Dropdown.tsx';
 import { layoutBox } from './home';
 
 
-const Layout: React.FC = () => {
+function Layout () {
     return (
         <>
             <Box sx={layoutBox}>
@@ -14,7 +14,8 @@ const Layout: React.FC = () => {
                         display: {
                             xs: 'none',
                             sm: 'flex',
-                            fontSize: '20px'
+                            fontSize: '25px',
+                            alignItems: 'center',
                         }
                     }}
                     direction="row"
@@ -22,14 +23,14 @@ const Layout: React.FC = () => {
                 >
                     <Box sx={{ 
                         display: 'flex', 
-                        alignItems: 'center',
                         width: '30px',
                         height: '30px',
+                        alignItems: 'center',
                          }}> 
                         <img 
                             src="./youtube.png" 
                             alt="YouTube logo" 
-                            style={{ width: '30', height: '50px' }}
+                            style={{ width: '30px', height: '30px' }}
                         />
                         <Typography 
                         // level="body1" 
