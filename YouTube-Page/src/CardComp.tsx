@@ -9,7 +9,9 @@ const CardComp = ({ vid, onClick }) => {
         <Card key={videoId} onClick={() => onClick(videoId)} sx={cardStyle}>
             <img className='pic' src={vid.snippet.thumbnails.medium.url} alt={vid.snippet.title} />
             <CardContent className='cardCont'>
-                <Typography sx={titleStyle} variant="h5">
+                <Typography sx={titleStyle} 
+                // variant="h5"
+                >
                     {vid.snippet.title.length > 50
                         ? vid.snippet.title.slice(0, 50) + "....."
                         : vid.snippet.title}

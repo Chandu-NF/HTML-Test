@@ -1,11 +1,11 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import './App.css';
-import ExplorePage from './Explore';
-import HomePage from './Home.jsx';
-import Layout from './Layout';
-import SearchPage from './Search';
+import ExplorePage from './Explore.tsx';
+import HomePage from './Home.tsx';
+import Layout from './Layout.tsx';
+import SearchPage from './Search.jsx';
 
-function App() {
+const App: React.FC = () => {
 
   return (
     <>
