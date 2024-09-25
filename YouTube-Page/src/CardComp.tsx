@@ -8,7 +8,7 @@ import {
 } from "./home";
 
 const CardComp = ({ vid, onClick }) => {
-  const videoId = vid.id.videoId ? vid.id.videoId : vid.id;
+  const videoId = vid.id.videoId ?? vid.id;
 
   return (
     <Card key={videoId} onClick={() => onClick(videoId)} sx={cardStyle}>

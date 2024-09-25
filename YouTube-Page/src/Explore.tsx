@@ -3,23 +3,15 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import CardComp from "./CardComp.js";
 import { playVideoBox, videoBox } from "./home.js";
+import VideoProp from './Types.ts';
 
-interface VideoItem {
-  id: {
-    videoId: string;
-  };
-  snippet: {
-    title: string;
-    description: string;
-  };
-}
 
 interface YouTubeApiResponse {
-  items: VideoItem[];
+  items: VideoProp[];
 }
 
 function ExplorePage() {
-  const [videos, setVideos] = useState<VideoItem[]>([]);
+  const [videos, setVideos] = useState<VideoProp[]>([]);
   const [selectedVideoId, setSelectedVideoId] = useState<string | null>(null);
 
   const apiURL: string = import.meta.env.VITE_API_URL_HOME;

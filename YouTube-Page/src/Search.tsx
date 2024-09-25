@@ -9,24 +9,16 @@ import {
   searchBox,
   searchVideoBox,
 } from "./home";
+import VideoProp from './Types.ts';
 
-interface VideoItem {
-  id: {
-    videoId: string;
-  };
-  snippet: {
-    title: string;
-    description: string;
-  };
-}
 
 interface YouTubeApiResponse {
-  items: VideoItem[];
+  items: VideoProp[];
 }
 
 function SearchPage() {
   const [query, setQuery] = useState<string>("");
-  const [videos, setVideos] = useState<VideoItem[]>([]);
+  const [videos, setVideos] = useState<VideoProp[]>([]);
   const [selectedVideoId, setSelectedVideoId] = useState<string | null>(null);
 
   const apiURL: string = import.meta.env.VITE_API_URL_HOME;
@@ -67,13 +59,12 @@ function SearchPage() {
     <Box>
       <Box sx={searchBox}>
         <Input
-          label="Search Videos"
           value={query}
           onChange={handleInputChange}
           placeholder="Search...."
           sx={inputBox}
         />
-        <Button sx={inputButton} onClick={handleSearch} variant="contained">
+        <Button sx={inputButton} onClick={handleSearch}>
           Search
         </Button>
       </Box>

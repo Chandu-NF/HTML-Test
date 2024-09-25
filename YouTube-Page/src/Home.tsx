@@ -3,26 +3,14 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import CardComp from "./CardComp";
 import { playVideoBox, videoBox } from "./home";
+import VideoProp from "./Types";
 
-interface Video {
-  id: string;
-  snippet: {
-    title: string;
-    description: string;
-    thumbnails: {
-      [key: string]: {
-        url: string;
-      };
-    };
-  };
-  statistics: {
-    viewCount: string;
-    likeCount: string;
-  };
+interface Video{
+  items: VideoProp[];
 }
 
 function HomePage() {
-  const [videos, setVideos] = useState<Video[]>([]);
+  const [videos, setVideos] = useState<VideoProp[]>([]);
   const [selectedVideoId, setSelectedVideoId] = useState<string | null>(null);
 
   const apiUrl: string = import.meta.env.VITE_API_URL_HOME;
@@ -30,7 +18,7 @@ function HomePage() {
 
   useEffect(() => {
     axios
-      .get(`${apiUrl}/videos`, {
+      .get<Video>(`${apiUrl}/videos`, {
         params: {
           part: "snippet,statistics",
           chart: "mostPopular",
@@ -40,7 +28,7 @@ function HomePage() {
         },
       })
       .then((response) => {
-        setVideos(response.data.items as Video[]);
+        setVideos(response.data.items);
       });
   }, [apiUrl, apiKey]);
 
@@ -55,7 +43,7 @@ function HomePage() {
   return (
     <Box sx={videoBox}>
       {videos.map((video) => (
-        <CardComp key={video.id} vid={video} onClick={handleVideoClick} />
+        <CardComp key={video.id.videoId} vid={video} onClick={handleVideoClick} />
       ))}
       <Modal open={!!selectedVideoId} onClose={handleCloseModal}>
         <Box sx={playVideoBox}>

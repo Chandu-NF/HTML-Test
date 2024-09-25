@@ -1,32 +1,21 @@
 import { Box, Stack, Typography } from "@mui/joy";
 import React from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import DropDownMenu from "./Dropdown.tsx";
-import { layoutBox } from "./home";
+import { layoutBox, layoutStack, layoutStackBox } from "./home";
+import NavComp from "./NavComp.tsx";
 
 function Layout() {
   return (
     <>
       <Box sx={layoutBox}>
         <Stack
-          sx={{
-            display: {
-              xs: "none",
-              sm: "flex",
-              fontSize: "25px",
-              alignItems: "center",
-            },
-          }}
+          sx={layoutStack}
           direction="row"
           gap={15}
         >
           <Box
-            sx={{
-              display: "flex",
-              width: "30px",
-              height: "30px",
-              alignItems: "center",
-            }}
+            sx={layoutStackBox}
           >
             <img
               src="./youtube.png"
@@ -41,35 +30,8 @@ function Layout() {
             </Typography>
           </Box>
 
-          <Typography
-            component={Link}
-            to="/home"
-            textColor="white"
-            sx={{
-              cursor: "pointer",
-            }}
-          >
-            Home
-          </Typography>
+          <NavComp/>
 
-          <Typography
-            component={Link}
-            to="/explore"
-
-            textColor="white"
-            sx={{ cursor: "pointer" }}
-          >
-            Explore
-          </Typography>
-
-          <Typography
-            component={Link}
-            to="/search"
-            textColor="white"
-            sx={{ cursor: "pointer" }}
-          >
-            Search
-          </Typography>
         </Stack>
 
         <Stack sx={{ display: { xs: "flex", sm: "none" } }}>
@@ -83,5 +45,6 @@ function Layout() {
     </>
   );
 }
+
 
 export default Layout;
