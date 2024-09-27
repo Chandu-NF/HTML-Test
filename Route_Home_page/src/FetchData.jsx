@@ -1,4 +1,4 @@
-import { Box, Card, CardContent, List, Typography } from '@mui/joy';
+import { Box, Card, CardContent, List, ListItem, Typography } from '@mui/joy';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import './index.css';
@@ -9,29 +9,6 @@ import './index.css';
 function FetchData() {
 
     const [data, setData] = useState([]); 
-
-//     const deleteList = (id) => {
-//         fetch('https://jsonplaceholder.typicode.com/posts/${id}', {
-//          method: 'DELETE'
-//     })
-//     .then(response=>{
-//         if(response.ok){
-//             const updatedData = data.filter(item => item.id !== id);
-//             setData(updatedData);
-//         } else {
-//             console.error('Failed to delete the item');
-//     }
-//  })
-// }
-
-
-    // useEffect(() => {
-    //     fetch('https://jsonplaceholder.typicode.com/posts')
-    //         .then(response =>  response.json())
-    //         .then(jsonData => {
-    //             setData(jsonData); 
-    //         })
-    // }, []);
 
     const deleteList = (id) => {
         axios.delete('https://jsonplaceholder.typicode.com/posts/${id}')
@@ -75,10 +52,11 @@ function FetchData() {
           FETCHED DATA:
           </Typography>
           <Typography textColor="common.black">
-          <List className = 'customList' sx={{ padding: '4px 0', listStyleType: 'disc' }}>
+
+          <List className = 'customList' >
                 {data.map(item => (
-                    <li  key={item.id}>{item.title} 
-                    <button className='delButton' onClick = {()=>deleteList(item.id)}> X </button> </li>
+                    <ListItem sx={{ display: 'list-item'  }} key={item.id}>{item.title} 
+                    <button  className='delButton' onClick = {()=>deleteList(item.id)}> X </button> </ListItem>
                 ))}
             </List>
         </Typography>

@@ -1,4 +1,6 @@
-export const cardStyle = {
+import { SxProps } from '@mui/joy/styles/types';
+
+export const cardStyle: SxProps = {
   position: "relative",
   margin: {
     xs: "auto",
@@ -22,7 +24,7 @@ export const cardStyle = {
   },
 };
 
-export const titleStyle = {
+export const titleStyle: SxProps = {
   color: "black",
   textAlign: "justify",
   fontSize: "12px",
@@ -30,7 +32,7 @@ export const titleStyle = {
   fontFamily: "Arial",
 };
 
-export const channelTitleStyle = {
+export const channelTitleStyle: SxProps = {
   color: "black",
   textAlign: "left",
   fontSize: "12px",
@@ -38,7 +40,7 @@ export const channelTitleStyle = {
   fontFamily: "Arial",
 };
 
-export const publishedAtStyle = {
+export const publishedAtStyle: SxProps = {
   color: "black",
   textAlign: "left",
   justifyContent: "space-between",
@@ -47,7 +49,7 @@ export const publishedAtStyle = {
   fontFamily: "Arial",
 };
 
-export const cardStyleSearch = {
+export const cardStyleSearch: SxProps ={
   margin: 2,
   display: "inline-grid",
   width: "280px",
@@ -58,7 +60,7 @@ export const cardStyleSearch = {
   cursor: "pointer",
 };
 
-export const videoBox = {
+export const videoBox: SxProps = {
   position: "relative",
   display: "flex",
   flexWrap: "wrap",
@@ -67,7 +69,7 @@ export const videoBox = {
   marginTop: "5rem",
 };
 
-export const playVideoBox = {
+export const playVideoBox: SxProps = {
   position: "absolute",
   top: "50%",
   left: "50%",
@@ -78,7 +80,7 @@ export const playVideoBox = {
   borderRadius: "15px",
 };
 
-export const searchBox = {
+export const searchBox: SxProps = {
   position: "relative",
   display: "flex",
   flexWrap: "wrap",
@@ -87,7 +89,7 @@ export const searchBox = {
   marginTop: "5rem",
 };
 
-export const searchVideoBox = {
+export const searchVideoBox: SxProps = {
   position: "relative",
   display: "flex",
   flexWrap: "wrap",
@@ -96,7 +98,7 @@ export const searchVideoBox = {
   marginTop: "1rem",
 };
 
-export const inputBox = {
+export const inputBox: SxProps = {
   border: "2px solid black",
   backgroundColor: "whitesmoke",
   width: "280px",
@@ -107,7 +109,7 @@ export const inputBox = {
   },
 };
 
-export const inputButton = {
+export const inputButton: SxProps = {
   border: "1px solid black",
   height: "4px",
   left: {
@@ -122,7 +124,7 @@ export const inputButton = {
   },
 };
 
-export const layoutBox = {
+export const layoutBox: SxProps = {
   position: "absolute",
   top: "0px",
   display: {
@@ -138,13 +140,13 @@ export const layoutBox = {
   textDecoration: "none",
 };
 
-export const layoutImg = {
+export const layoutImg: SxProps = {
   width: "30px",
   height: "33px",
   marginRight: "8px",
 };
 
-export const layoutStack ={
+export const layoutStack: SxProps = {
   display: {
     xs: "none",
     sm: "flex",
@@ -153,7 +155,7 @@ export const layoutStack ={
   }
 }
 
-export const layoutStackBox = {
+export const layoutStackBox: SxProps = {
     display: "flex",
     width: "30px",
     height: "30px",
