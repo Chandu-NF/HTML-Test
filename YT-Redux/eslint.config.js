@@ -8,11 +8,14 @@ export default [
   ...tseslint.configs.recommended,
   pluginReact.configs.flat.recommended,
   {
-    files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"],
+    files: ["src/**/*.{js,ts,jsx,tsx}"],
     rules: {
-      "react/prop-types": "off",
+      "react/react-in-jsx-scope": "off",
+      "react/prop-types": 'off',
+      "@typescript-eslint/no-explicit-any":'off'
+    },
+    languageOptions: {
+      globals: globals.browser,
     },
   },
-  { files: ["**/*.js"], languageOptions: { sourceType: "script" } },
-  { languageOptions: { globals: globals.browser } },
 ];

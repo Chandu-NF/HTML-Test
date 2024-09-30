@@ -1,10 +1,10 @@
 
 import { Box, Card, CardContent, List, ListItem, Typography } from '@mui/joy';
 import React, { useState } from 'react';
-import './App.css';
-import Task from './components/Task';
+import Task from './Task';
+import './ToDoList.css';
 
-function App() {
+function To_Do_List() {
 
   const [taskName, setTaskName] = useState("")
   const[taskList, setTaskList] = useState([])
@@ -71,4 +71,4 @@ function App() {
   }
  
 
-export default App
+export default To_Do_List
