@@ -4,30 +4,36 @@ import VideoProp from './Types';
 
 interface VideoState {
   items: VideoProp[];
-  status: 'idle' | 'loading' | 'succeeded' | 'failed';
-  error: string | null;
+  loading: boolean;
+  error?: string;
 }
 
 const initialState: VideoState = {
   items: [],
-  status: 'idle',
-  error: null,
+  loading: true
 };
 
-export const fetchVideos = createAsyncThunk('videos/fetchVideos', async () => {
+export const fetchVideos = createAsyncThunk('videos/fetchVideos', 
+  async (chart:string, thunkAPI) => {
   const apiUrl = import.meta.env.VITE_API_URL_HOMEPAGE;
   const apiKey = import.meta.env.VITE_API_KEY_;
 
+  try{
   const response = await axios.get(`${apiUrl}/videos`, {
     params: {
       part: 'snippet,contentDetails,statistics',
-      chart: 'mostPopular',
+      chart,
       regionCode: 'IN',
       key: apiKey,
       maxResults: 24,
     },
   });
   return response.data.items;
+} catch(error: any){
+  if (error.response && error.response.data){
+    return thunkAPI.rejectWithValue(error.response.data)
+  }
+}
 });
 
 const videoSlice = createSlice({
@@ -37,15 +43,15 @@ const videoSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchVideos.pending, (state) => {
-        state.status = 'loading';
+        state.loading = true;
       })
       .addCase(fetchVideos.fulfilled, (state, action) => {
-        state.status = 'succeeded';
+        state.loading = false;
         state.items = action.payload;
       })
       .addCase(fetchVideos.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.error.message || 'Failed to fetch videos';
+        state.loading = false;
+        state.error = action.payload as string || 'Error loading....';
       });
   },
 });
